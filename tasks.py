@@ -1,3 +1,4 @@
+import os
 import csv
 import time
 import zipfile
@@ -30,8 +31,6 @@ def create_robot():
                 submit_form(order_number)
                 create_pdf(order_number)
         create_zip_file()
-    except Exception as e:
-        logger.error(f"Error running robot: {e}")
     finally:
         time.sleep(10)
         delete_robot_parts_folder()
@@ -86,7 +85,7 @@ def create_combined_image(receipt_text, robot_path, order_id):
     # Create receipt image
     receipt_img = Image.new('RGB', (400, 150), 'white')
     draw = ImageDraw.Draw(receipt_img)
-    font = ImageFont.truetype("arial.ttf", 16)
+    font = ImageFont.truetype(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ARIAL.TTF'), size=16)
     draw.text((30, 30), receipt_text, fill='black', font=font)
     receipt_path = fs.join_path("output/robot_parts", f"receipt_{order_id}.png")
     receipt_img.save(receipt_path, quality=100)
