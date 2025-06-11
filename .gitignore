@@ -14,4 +14,8 @@ temp/
 */work-items-out/*
 testrun/*
 .~lock*
+<<<<<<< HEAD
 *.pkl
+=======
+*.pkl
+>>>>>>> f231699db1acc9aeeb659d0f9831c79c7cbfc5e6
